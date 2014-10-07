@@ -6,6 +6,8 @@ public class ClickToMove : MonoBehaviour {
 	Vector3 clickPosition;
 	public float speed = 5;
 
+	public GameObject positionIndicator;
+
 	// Use this for initialization
 	void Start () {
 		clickPosition = transform.position;
@@ -16,7 +18,6 @@ public class ClickToMove : MonoBehaviour {
 		if (Input.GetMouseButton (0)) {
 			GetMousePosition();
 		}
-
 	}
 
 	void FixedUpdate(){
@@ -30,6 +31,7 @@ public class ClickToMove : MonoBehaviour {
 		if(Physics.Raycast(ray, out hit, 1000)){
 			clickPosition = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 			Debug.Log(clickPosition);
+
 		}
 	}
 
@@ -41,7 +43,14 @@ public class ClickToMove : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp (transform.rotation, newRotate, 0.1f);
 
 			rigidbody.AddForce(transform.forward*speed);
+
+			placeMarker();
 		}
 
+	}
+
+	void placeMarker() {
+		positionIndicator.SetActive (true);
+		positionIndicator.transform.position = clickPosition;
 	}
 }

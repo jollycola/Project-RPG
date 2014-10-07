@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetMouseButton (0)) {
+			
 		}
 	}
 }
