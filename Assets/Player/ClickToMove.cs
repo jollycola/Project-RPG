@@ -10,7 +10,7 @@ public class ClickToMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		clickPosition = transform.position;
+
 	}
 	
 	// Update is called once per frame
