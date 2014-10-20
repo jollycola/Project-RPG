@@ -5,12 +5,17 @@ public class PlayerNavigation : MonoBehaviour {
 
 	NavMeshAgent agent;
 	Vector3 clickPosition;	
-	public GameObject positionIndicator;
+	public GameObject positionIndicator, arrow;
 	public HealthScript health;
+	public Animator clickAnimator;
+
+	float time = 0.5f;
 
 	void Start () {
 		agent = GetComponent<NavMeshAgent> ();
 		clickPosition = transform.position;
+		health = this.GetComponent<HealthScript> ();
+
 	}
 
 	void Update () {
@@ -18,13 +23,17 @@ public class PlayerNavigation : MonoBehaviour {
 			GetMousePosition();
 		}
 
-		if (Vector3.Distance (clickPosition, transform.position) <= 1) {
-			positionIndicator.SetActive(false);		
+		if (Vector3.Distance (clickPosition, transform.position) <= 2) {
+			time -= Time.deltaTime;
+			clickAnimator.SetTrigger("Disappear");
+			if(time <=0){
+				positionIndicator.SetActive(false);
+				time = 0;
+			}
 		}
 	}
 
 	void FixedUpdate(){
-//		health.ApplyDamage (1);
 	}
 
 	void GetMousePosition(){
@@ -37,11 +46,15 @@ public class PlayerNavigation : MonoBehaviour {
 			
 		}
 		placeMarker();
+
+		time = 0.5f;
 	}
 
 	void placeMarker() {
 		positionIndicator.SetActive (true);
 		positionIndicator.transform.position = clickPosition;
+//		positionIndicator.transform.position = new Vector3 (positionIndicator.transform.position.x, 200, positionIndicator.transform.position.z);
 		agent.SetDestination (clickPosition);
+		clickAnimator.SetTrigger ("Appear");
 	}
 }
