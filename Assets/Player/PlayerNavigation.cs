@@ -23,7 +23,7 @@ public class PlayerNavigation : MonoBehaviour {
 			GetMousePosition();
 		}
 
-		if (Vector3.Distance (clickPosition, transform.position) <= 2) {
+		if (Vector3.Distance (clickPosition, transform.position) <= 4) {
 			time -= Time.deltaTime;
 			clickAnimator.SetTrigger("Disappear");
 			if(time <=0){
@@ -53,7 +53,7 @@ public class PlayerNavigation : MonoBehaviour {
 	void placeMarker() {
 		positionIndicator.SetActive (true);
 		positionIndicator.transform.position = clickPosition;
-//		positionIndicator.transform.position = new Vector3 (positionIndicator.transform.position.x, 200, positionIndicator.transform.position.z);
+		arrow.transform.position = new Vector3 (positionIndicator.transform.position.x, 200, positionIndicator.transform.position.z);
 		agent.SetDestination (clickPosition);
 		clickAnimator.SetTrigger ("Appear");
 	}
