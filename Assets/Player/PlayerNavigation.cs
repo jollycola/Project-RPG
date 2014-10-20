@@ -24,7 +24,7 @@ public class PlayerNavigation : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		health.ApplyDamage (1);
+//		health.ApplyDamage (1);
 	}
 
 	void GetMousePosition(){

@@ -1,13 +1,17 @@
 fileFormatVersion: 2
-guid: 6cfcce7f0bb5bb2438dc2ab928f17e84
+guid: 8c77c83cf66cee54ab931eb581b88599
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: BezierCurve
+    100000: Armature
+    100002: //RootNode
+    100004: Cube_001
+    400000: Armature
+    400002: //RootNode
+    400004: Cube_001
+    2300000: Cube_001
+    3300000: Cube_001
+    4300000: Cube_001
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -29,7 +33,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .379999995
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
