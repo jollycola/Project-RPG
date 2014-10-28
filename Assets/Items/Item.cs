@@ -3,32 +3,33 @@
 public class Item : ScriptableObject{
 
 	public string _name;
-	public int _value;
+	public int _itemID;
 	public RarityTypes _rarity;
-	public int _maxDurability;
-	public int _curDurability;
+	public int _value;
+	public ItemType _itemType;
 
-	public Texture2D itemIcon; //added temp.
+	public Texture2D _itemIcon; //added temp.
 	public string _itemDesc; //added temp.
 
 	public Item(){
 
+		_itemID = 0;
 		_name = "Need Name";
 		_itemDesc = "Need Description";
-		_value = 0;
 		_rarity = RarityTypes.Normal;
-		_maxDurability = 50;
-		_curDurability = _maxDurability;
+		_value = 0;
+		_itemIcon = null;
+		_itemType = ItemType.Simple;
 	}
 
-	public Item(string name, string desciption, int value, RarityTypes rare, int maxDurability, int curDurability){
+	public Item(string name, string desciption, int itemID, RarityTypes rare, int value, Texture2D icon, ItemType type){
 		_name = name;
 		_itemDesc = desciption;
-		_value = value;
+		_itemID = itemID;
 		_rarity = rare;
-		_maxDurability = maxDurability;
-		_curDurability = curDurability;
-		//TODO add Icon and Desc
+		_value = value;
+		_itemIcon = icon;
+		_itemType = type;
 	}
 
 	public string Name{
@@ -43,10 +44,10 @@ public class Item : ScriptableObject{
 		set{_itemDesc = value;}
 	}
 
-	public int Value{
+	public int ItemID{
 
-		get{return _value;}
-		set{_value = value;}
+		get{return _itemID;}
+		set{_itemID = value;}
 	}
 
 	public RarityTypes Rarity{
@@ -54,15 +55,27 @@ public class Item : ScriptableObject{
 		set{_rarity = value;}
 	}
 
-	public int MaxDurability{
-		get{return _maxDurability;}
-		set{_maxDurability = value;}
+	public int Value{
+		get{return _value;}
+		set{_value = value;}
 	}
 
-	public int CurDurability{
-		get{return _curDurability;}
-		set{_curDurability = value;}
+	public Texture2D ItemIcon{
+		get{return _itemIcon;}
+		set{_itemIcon = value;}
 	}
+
+	public ItemType ItemTypeV{
+		get{return _itemType;}
+		set{_itemType = value;}
+	}
+	
+}
+public enum ItemType {
+
+	Simple,
+	Weapon,
+	Armor
 }
 
 public enum RarityTypes {

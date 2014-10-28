@@ -5,20 +5,20 @@ using System.Collections;
 public class WeaponItem : Item {
 	
 	public int _maxDamage;
-	public float _dmgVar;
+	public int _minDamage;
 	public DamageType _dmgType;
 	
 	public WeaponItem(){
 		
 		_maxDamage = 0;
-		_dmgVar = 0;
+		_minDamage = 0;
 		_dmgType = DamageType.Slash;
 	}
 
-	public WeaponItem(int mDmg, float dmgV, DamageType dmgT){
+	public WeaponItem(int maxDmg, int minDmg, DamageType dmgT){
 		
-		_maxDamage = mDmg;
-		_dmgVar = dmgV;
+		_maxDamage = maxDmg;
+		_minDamage = minDmg;
 		_dmgType = dmgT;
 	}
 	
@@ -28,10 +28,10 @@ public class WeaponItem : Item {
 		set{_maxDamage = value;}
 	}
 	
-	public float DamageVariance{
+	public int MinDamage{
 		
-		get{return _dmgVar;}
-		set{_dmgVar = value;}
+		get{return _minDamage;}
+		set{_minDamage = value;}
 	}
 	
 	public DamageType TypeOfDamage{
