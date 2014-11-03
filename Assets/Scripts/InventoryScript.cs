@@ -32,7 +32,21 @@ public class InventoryScript : MonoBehaviour {
 				slot.GetComponent<InvSlotScript>().Initialize();
 			}
 		}
-		invControlSrcipt.StartingInv ();
+        //for (int i = 0; i < 6; i++)
+        //{
+        //    GameObject armorSlot;
+
+        //    armorSlot = Instantiate(slotPrefab) as GameObject;
+        //    armorSlot.name = "slot_" + (1000+i);
+        //    armorSlot.transform.parent = parent_slot;
+        //    armorSlot.transform.localPosition = new Vector3(), 0);
+        //    armorSlot.GetComponent<InvSlotScript>().SlotIndex = ((i * collums) + ii);
+        //    armorSlot.GetComponent<InvSlotScript>().invController = invControlSrcipt;
+        //    armorSlot.GetComponent<InvSlotScript>().manager = _manager;
+        //    armorSlot.GetComponent<InvSlotScript>().Initialize();
+            
+        //}
+        invControlSrcipt.StartingInv();
         float mX = 0;
         if (IsOdd(rows)) { mX = 0.5f; }
         GameObject.Find("Title").transform.localPosition = new Vector3(title.transform.localPosition.x, (rows / 2 + mX) * slotRectTransform.sizeDelta.y + slotRectTransform.sizeDelta.y + (rows / 2 + mX) * distanceBetweenSlots);

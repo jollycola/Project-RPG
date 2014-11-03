@@ -18,7 +18,6 @@ public class InvSlotScript : MonoBehaviour {
 	void Start () {
 		_stackSize = 0;
 		_iconToDraw = null;
-
 	}
 
 	void Update(){

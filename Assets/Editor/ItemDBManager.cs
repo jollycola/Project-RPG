@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class ItemDBManager : EditorWindow {
 
-	[MenuItem("Item Database/Manager")]	
+	[MenuItem("Custom Tools/Item Database Manager")]	
 
 	static void Init(){
 		ItemDBManager window = (ItemDBManager)EditorWindow.CreateInstance(typeof(ItemDBManager));
@@ -34,6 +34,7 @@ public class ItemDBManager : EditorWindow {
 	DamageType newWeaponDamageType = DamageType.Slash;
 
 	int newArmorLvl = 0;
+    ArmorSlot newArmorSlot = ArmorSlot.Head;
 
 	ItemToCreate currentItemToCreate = ItemToCreate.Weapon;
 
@@ -91,7 +92,11 @@ public class ItemDBManager : EditorWindow {
 					EditorGUILayout.EndHorizontal();
 					break;
 				case ItemToCreate.Armor:
-					EditorGUILayout.LabelField("Armor-Specific Attributes:", EditorStyles.boldLabel);
+                    EditorGUILayout.LabelField("Armor-Specific Attributes:", EditorStyles.boldLabel);
+                    EditorGUILayout.BeginHorizontal();
+					EditorGUILayout.PrefixLabel("Armor Slot: ");
+                    newArmorSlot = (ArmorSlot)EditorGUILayout.EnumPopup(newArmorSlot);
+                    EditorGUILayout.EndHorizontal();
 					newArmorLvl = EditorGUILayout.IntField("Armor Level: ", newArmorLvl);
 					break;
 			}
@@ -121,6 +126,7 @@ public class ItemDBManager : EditorWindow {
 						newArmor.Value = newItemValue;
 						newArmor.Rarity = newItemRarity;
 						newArmor.ArmorLevel = newArmorLvl;
+                        newArmor.Slot = newArmorSlot;
 						newArmor.ItemTypeV = (ItemType) currentItemToCreate;
 						_itemList.Add(newArmor);
 						break;
@@ -199,6 +205,8 @@ public class ItemDBManager : EditorWindow {
 						AssetDatabase.OpenAsset(_itemList[i]);
 					}
 					if (GUILayout.Button("Remove")){
+						if (EditorUtility.DisplayDialog("Are you sure you want to remove object?","Cannot be undone",
+						                                "Remove", "Cancel"))
 						_itemList.Remove(_itemList[i]);
 					}
 					EditorGUILayout.EndHorizontal();

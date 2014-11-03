@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ArmorItem : Item {
+public class ArmorItem : ClothingItem {
 
 	public int _armorLevel;
 
