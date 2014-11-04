@@ -36,6 +36,7 @@ public class InvSlotScript : MonoBehaviour {
 	}
 	public void Initialize(){
 		invController.Initialize (_slotIndex, this);
+        Debug.Log(_slotIndex);
 	}
 
 	public void thisClicked(){

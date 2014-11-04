@@ -11,7 +11,8 @@ public class InventoryScript : MonoBehaviour {
 	public InventoryControllerScript invControlSrcipt;
 	public ItemManager _manager;
 
-	void Start () {	
+	void Start () {
+        invControlSrcipt.InititializeSlotAmount(collums, rows);
 		float _halfCollums = (float)collums / 2 - 0.5f;
 		float _halfRows = (float)rows / 2 - 0.5f;
 		RectTransform slotRectTransform = slotPrefab.GetComponent<RectTransform> (); 
@@ -32,7 +33,7 @@ public class InventoryScript : MonoBehaviour {
 				slot.GetComponent<InvSlotScript>().Initialize();
 			}
 		}
-        //for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 6; i++)
         //{
         //    GameObject armorSlot;
 
@@ -40,11 +41,11 @@ public class InventoryScript : MonoBehaviour {
         //    armorSlot.name = "slot_" + (1000+i);
         //    armorSlot.transform.parent = parent_slot;
         //    armorSlot.transform.localPosition = new Vector3(), 0);
-        //    armorSlot.GetComponent<InvSlotScript>().SlotIndex = ((i * collums) + ii);
+        //    armorSlot.GetComponent<InvSlotScript>().SlotIndex = (1000+i);
         //    armorSlot.GetComponent<InvSlotScript>().invController = invControlSrcipt;
         //    armorSlot.GetComponent<InvSlotScript>().manager = _manager;
         //    armorSlot.GetComponent<InvSlotScript>().Initialize();
-            
+
         //}
         invControlSrcipt.StartingInv();
         float mX = 0;

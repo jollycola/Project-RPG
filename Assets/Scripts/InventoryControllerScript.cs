@@ -11,7 +11,7 @@ public class InventoryControllerScript : MonoBehaviour {
 	InvSlotScript[] slot;
 
 	void Start () {
-		slot = new InvSlotScript[invScript.rows * invScript.collums];
+//		slot = new InvSlotScript[invScript.rows * invScript.collums];
 		slotScript = new InvSlotScript[invScript.rows * invScript.collums];
 	}
 
@@ -20,6 +20,10 @@ public class InventoryControllerScript : MonoBehaviour {
 //			slotScript[i] = slot[i].GetComponent<InvSlotScript>();	
 //		}
 	}
+
+    public void InititializeSlotAmount(int x, int y) {
+        slot = new InvSlotScript[x*y];
+    }
 	
 	public void StartingInv(){
 		slot [0].itemID = 0;
