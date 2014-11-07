@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class InvSlotScript : MonoBehaviour {
-	int _itemID, _stackSize, _slotIndex;
+	public int _itemID, _stackSize, _slotIndex;
 	Texture2D _iconToDraw;
 	public bool mouseOver = false;
 	public RawImage imageSlot;
@@ -36,7 +36,7 @@ public class InvSlotScript : MonoBehaviour {
 	}
 	public void Initialize(){
 		invController.Initialize (_slotIndex, this);
-        Debug.Log(_slotIndex);
+        //Debug.Log(_slotIndex);
 	}
 
 	public void thisClicked(){
@@ -66,7 +66,7 @@ public class InvSlotScript : MonoBehaviour {
 
 	void OnGUI(){
 		if (mouseOver && _itemID != -1) {
-			Debug.Log ("Mouse Over");
+            //Debug.Log ("Mouse Over: "+ _slotIndex);
 			tooltipWindow = GUI.Window(0, tooltipWindow, inTooltip, manager.itemList[_itemID].Name + "("+ manager.itemList[_itemID].Rarity+")");
 			tooltipWindow.position = Event.current.mousePosition;
 		}

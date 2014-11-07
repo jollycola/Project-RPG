@@ -8,11 +8,11 @@ public class InventoryControllerScript : MonoBehaviour {
 	public ItemManager manager;
 	bool handFull;
 	int itemInHand;
-	InvSlotScript[] slot;
+	public InvSlotScript[] slot;
 
 	void Start () {
 //		slot = new InvSlotScript[invScript.rows * invScript.collums];
-		slotScript = new InvSlotScript[invScript.rows * invScript.collums];
+		StartingInv();
 	}
 
 	void Update(){
@@ -22,17 +22,19 @@ public class InventoryControllerScript : MonoBehaviour {
 	}
 
     public void InititializeSlotAmount(int x, int y) {
-        slot = new InvSlotScript[x*y];
+        slot = new InvSlotScript[x * y];
+		Debug.Log("Initializing slot amount!");
+
     }
 	
 	public void StartingInv(){
-		slot [0].itemID = 0;
-//		slot [1].itemID = 1;
+//        slot[0]._itemID = 0;
+////		slot [1].itemID = 1;
 
-		//empty slots
-		for (int i = 1; i < slot.Length; i++) {
-			slot [i].itemID = -1;		
-		}
+//        //empty slots
+//        for (int i = 1; i < slot.Length; i++) {
+//            slot [i]._itemID = -1;		
+//        }
 	}
 
 	public void Initialize(int index, InvSlotScript scr){
@@ -42,21 +44,23 @@ public class InventoryControllerScript : MonoBehaviour {
 
 	public void slotPressed(int index){
 		if (handFull) {
-			if(slot[index].itemID == -1){
-				slot[index].itemID = itemInHand;
+            if (slot[index]._itemID == -1)
+            {
+				slot[index]._itemID = itemInHand;
 				itemInHand = -1;
 				handFull = false;
 			} else {
 				int _temp = -1;
 				_temp = itemInHand;
-				itemInHand = slot[index].itemID;
-				slot[index].itemID = _temp;
+                itemInHand = slot[index]._itemID;
+                slot[index]._itemID = _temp;
 			}
 		} else {
-			if(slot[index].itemID != -1){
-				itemInHand = slot[index].itemID;
+            if (slot[index]._itemID != -1)
+            {
+                itemInHand = slot[index]._itemID;
 				handFull = true;
-				slot[index].itemID = -1;
+                slot[index]._itemID = -1;
 			}
 		}
 		Debug.Log ("Button: " + index + " was clicked");

@@ -5,7 +5,7 @@ using System.Collections;
 
 public class InventoryCreator : EditorWindow {
 
-    [MenuItem("Custom Tools/Inventory Manager")]
+    [MenuItem("Custom Tools/Inventory Creator")]
 
 	static void Init () {
         InventoryCreator window = (InventoryCreator)EditorWindow.CreateInstance(typeof(InventoryCreator));
@@ -27,7 +27,6 @@ public class InventoryCreator : EditorWindow {
 		parent_slot = (Transform) GameObject.Find("Inventory").GetComponent<Transform>();
         invControlSrcipt = (InventoryControllerScript)GameObject.Find("InventoryController").GetComponent<InventoryControllerScript>();
         _manager = (ItemManager)GameObject.Find("InventoryController").GetComponent<ItemManager>();
-        Debug.Log(Camera.main.pixelWidth);
     }
 
     void OnGUI() {
@@ -37,13 +36,25 @@ public class InventoryCreator : EditorWindow {
         EditorGUILayout.EndHorizontal();
         amountOfSlots = EditorGUILayout.Vector2Field("Amount of slots: ", amountOfSlots);
         distanceBetweenSlots = EditorGUILayout.IntField("Distance between slots: ", distanceBetweenSlots);
+        EditorGUILayout.Space();
+
+        //EditorGUILayout.LabelField("Starting Inventory", EditorStyles.boldLabel);
+        //for (int i = 0; i < amountOfSlots.y; i++)
+        //{
+        //    for (int ii = 0; ii < amountOfSlots.x; ii++)
+        //    {
+        //        EditorGUILayout.IntField("Item ID: ", );
+        //    }
+        //}
+        //EditorGUILayout.Space();
 
         if (GUILayout.Button("Create Inventory"))
         {
-            invControlSrcipt.InititializeSlotAmount((int) amountOfSlots.x, (int) amountOfSlots.y);
             float _halfCollums = (float)amountOfSlots.x / 2 - 0.5f;
             float _halfRows = (float)amountOfSlots.y / 2 - 0.5f;
             RectTransform slotRectTransform = slotPrefab.GetComponent<RectTransform>();
+            //invControlSrcipt.InititializeSlotAmount();
+            invControlSrcipt.slot = new InvSlotScript[(int)amountOfSlots.x * (int)amountOfSlots.y];
             for (int i = 0; i < amountOfSlots.y; i++)
             {
                 float _i = i - _halfRows;
@@ -58,8 +69,9 @@ public class InventoryCreator : EditorWindow {
                     float _realDistance = distanceBetweenSlots * slot.transform.localScale.x;
                     //slot.transform.localPosition = new Vector3(_ii * (slotRectTransform.sizeDelta.x + distanceBetweenSlots), -_i * (slotRectTransform.sizeDelta.y + distanceBetweenSlots), 0);
                     slot.transform.localPosition = new Vector3(_ii * (slot.transform.localScale.x + _realDistance), -_i * (slot.transform.localScale.y + _realDistance), 0);
-                    slot.GetComponentInChildren<Text>().text = "" + (i * amountOfSlots.x + ii);
-                    slot.GetComponent<InvSlotScript>().SlotIndex = (int) (i * amountOfSlots.x + ii);
+                    //slot.GetComponentInChildren<Text>().text = "" + (i * amountOfSlots.x + ii);
+                    slot.GetComponent<InvSlotScript>()._slotIndex = (int)(i * amountOfSlots.x + ii);
+                    slot.GetComponent<InvSlotScript>()._itemID = -1;
                     slot.GetComponent<InvSlotScript>().invController = invControlSrcipt;
                     slot.GetComponent<InvSlotScript>().manager = _manager;
                     slot.GetComponent<InvSlotScript>().Initialize();

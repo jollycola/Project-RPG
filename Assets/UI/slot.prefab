@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12cb2f4075e767742b1c7806c6476c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemID: 0
+  _stackSize: 0
+  _slotIndex: 0
   mouseOver: 0
   imageSlot: {fileID: 11400008}
   invController: {fileID: 0}
